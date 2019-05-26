@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -30,9 +31,9 @@ public class TaskListenerTest {
         task4.setTime("");
         task5.setTime("");
 
-        Map<String, Task> oldTasks = List.of(task1, task2, task3).stream().collect(Collectors.toMap(o -> o.getTaskNumber(), o -> o));
-        List<Task> newTasks = List.of(task1, task2, task3, task4, task5);
-        assertThat(taskListener.compareTasks(oldTasks, newTasks), is(List.of(task4, task5)));
+        Map<String, Task> oldTasks = Stream.of(task1, task2, task3).collect(Collectors.toMap(o -> o.getTaskNumber(), o -> o));
+        List<Task> newTasks = Stream.of(task1, task2, task3, task4, task5).collect(Collectors.toList());
+        assertThat(taskListener.compareTasks(oldTasks, newTasks), is(Stream.of(task4, task5).collect(Collectors.toList())));
     }
 
     @Test
