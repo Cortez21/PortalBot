@@ -76,7 +76,9 @@ public class Terminal {
     }
 
     public static void addToTaskList(String taskNumber) {
-        serializer.addToTaskList(Set.of(taskNumber));
+        Set<String> values = new TreeSet<>();
+        values.add(taskNumber);
+        serializer.addToTaskList(values);
         System.out.println("Done");
     }
 

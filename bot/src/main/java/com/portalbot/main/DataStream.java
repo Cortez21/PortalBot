@@ -16,17 +16,17 @@ public class DataStream {
     public DataStream() {
         requestMethod = "POST";
         autoRedirect = true;
-        this.setProperties(Map.of(
-                "Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                "Accept-Encoding", "gzip, deflate, br",
-                "Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,pl;q=0.6",
-                "Cache-Control", "max-age=0",
-                "Connection", "keep-alive",
-                "Host", "portal.alpm.com.ua",
-                "Upgrade-Insecure-Requests", "1",
-                "User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/71.0.3578.98 Chrome/71.0.3578.98 Safari/537.36"
-        )
-        );
+        Map<String, String> properties = new HashMap<>();
+        properties.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+        properties.put("Accept-Encoding", "gzip, deflate, br");
+        properties.put("Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,pl;q=0.6");
+        properties.put("Cache-Control", "max-age=0");
+        properties.put("Connection", "keep-alive");
+        properties.put("Host", "portal.alpm.com.ua");
+        properties.put("Upgrade-Insecure-Requests", "1");
+        properties.put("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/71.0.3578.98 Chrome/71.0.3578.98 Safari/537.36");
+        this.setProperties(properties);
+
     }
 
 
