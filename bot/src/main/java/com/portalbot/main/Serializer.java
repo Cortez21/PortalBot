@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Serializer {
     private String mainPath = "home/PortalBot/files/";
-    private String path = "files/";
+    private String path = "home/PortalBot/files/files/";
 
     public Object loadObject(String filePath) throws IOException, ClassNotFoundException {
         Object result;
