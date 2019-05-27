@@ -68,7 +68,6 @@ public class Serializer {
 
     public void saveSessions(List<String> session) {
         try {
-
             saveObject(session, "sessions");
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +77,6 @@ public class Serializer {
     public List<String> loadSessions() {
         List<String> sessions = new ArrayList<>();
         try {
-
             sessions = (List<String>) loadObject("sessions");
         } catch (Exception e) {
             e.printStackTrace();

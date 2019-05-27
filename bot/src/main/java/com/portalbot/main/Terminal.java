@@ -77,7 +77,7 @@ public class Terminal {
     }
 
     public static void openSession(String chatID) {
-        holder.closeSession(chatID);
+        holder.openSession(chatID);
     }
 
     public static void getTasks(String chatID) {

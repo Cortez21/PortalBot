@@ -4,6 +4,8 @@ package com.portalbot.main;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Launch {
     private static DataStream data;
@@ -14,15 +16,9 @@ public class Launch {
         System.out.println(new Date().toString());
         Serializer serializer = new Serializer();
         SessionsHolder holder = new SessionsHolder();
-        Map<String, Task> tasks = new HashMap<>();
-        tasks.put("1111", new Task("1111"));
-        tasks.put("2222", new Task("2222"));
-        tasks.put("3333", new Task("3333"));
-        User user = new User("0000", "login", "pass");
-        user.setTasks(tasks);
-        serializer.saveTasks(user);
-        User result = serializer.loadTasks(user.getChatID());
-        result.getTasks().values().stream().forEach(System.out::println);
+        String session = "797003480";
+        holder.openSession(session);
+
 
     }
 
