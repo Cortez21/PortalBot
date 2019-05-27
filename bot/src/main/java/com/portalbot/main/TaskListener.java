@@ -40,12 +40,15 @@ public class TaskListener {
             }
             String currentDate = dateIterator.next();
             switching(currentDate);
-            List<Task> temp = new ArrayList<>();
-            if (data.getBody() != null) {
-                temp = parser.execute(data.getBody());
-                setDate(temp, currentDate);
-                newTasks.addAll(temp);
+            List<Task> temp;
+            if (data.getBody() == null) {
+                i--;
+                LogWriter.add("Connection is broke. One more trying to connect...");
+                continue;
             }
+            temp = parser.execute(data.getBody());
+            setDate(temp, currentDate);
+            newTasks.addAll(temp);
         }
 
         oldTasks = serializer.loadTasks(chatID).getTasks();
