@@ -5,6 +5,7 @@ import java.util.*;
 public class Terminal {
     private static Serializer serializer = new Serializer();
     private static GarbageCollector gc = new GarbageCollector();
+    private static SessionsHolder holder = new SessionsHolder();
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Hi. Welcome to the BOT terminal!");
@@ -47,8 +48,20 @@ public class Terminal {
                     turnGC(data[1]);
                     System.out.println("Done!");
                 }
+            } else if (answer.contains("/openSession")) {
+                String[] data = answer.split(" ");
+                if (data.length == 2) {
+                    openSession(data[1]);
+                    System.out.println("Done!");
+                }
+            } else if (answer.contains("/closeSession")) {
+                String[] data = answer.split(" ");
+                if (data.length == 2) {
+                    closeSession(data[1]);
+                    System.out.println("Done!");
+                }
             }
-        }
+            }
 
     }
 
@@ -57,6 +70,14 @@ public class Terminal {
         for (String value : sessions) {
             System.out.println(value);
         }
+    }
+
+    public static void closeSession(String chatID) {
+        holder.closeSession(chatID);
+    }
+
+    public static void openSession(String chatID) {
+        holder.closeSession(chatID);
     }
 
     public static void getTasks(String chatID) {
