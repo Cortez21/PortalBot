@@ -83,8 +83,8 @@ public class TaskListener {
                 LogWriter.add(String.format("Detected a new task %s", newTask.getTaskNumber()));
                 newTask.setStatusMessage("ДОБАВЛЕНА НОВАЯ ЗАЯВКА: ");
                 result.add(newTask);
-            } else if ((oldTask != null && !oldTask.getDate().equals(newTask.getDate()))
-                    || (oldTask != null && !oldTask.getTime().equals(newTask.getTime()))) {
+            } else if ((oldTask != null && !oldTask.getDate().equals(newTask.getDate()) && oldTask.getAddress().equals(newTask.getAddress()))
+                    || (oldTask != null && !oldTask.getTime().equals(newTask.getTime())) && oldTask.getAddress().equals(newTask.getAddress())) {
                 LogWriter.add(String.format("Detected moving the task %s", newTask.getTaskNumber()));
                 newTask.setStatusMessage(String.format("ЗАВКА ПЕРЕНЕСЕНА С %s(%s) НА %s(%s)", oldTask.getDate(), oldTask.getTime(), newTask.getDate(), newTask.getTime()));
                 result.add(newTask);

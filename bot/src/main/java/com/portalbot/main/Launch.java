@@ -1,6 +1,8 @@
 package com.portalbot.main;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.*;
@@ -10,14 +12,13 @@ import java.util.stream.Stream;
 public class Launch {
     private static DataStream data;
     private static Connection connection;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         data = new DataStream();
         connection = new Connection();
         System.out.println(new Date().toString());
         Serializer serializer = new Serializer();
         SessionsHolder holder = new SessionsHolder();
-        String session = "797003480";
-        holder.openSession(session);
+        FileWriter fw = new FileWriter("test.txt");
 
 
     }

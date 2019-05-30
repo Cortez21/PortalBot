@@ -34,17 +34,20 @@ public class Parser {
         || data[8].contains("ТВ без тюнера:")
         || data[8].contains("Замена ТВ тюнера:")
         || data[8].contains("Роутер:")
-                || data[8].contains("SIM карта:"))
+                || data[8].contains("SIM карта:")
+                || data[8].contains("Роутер ПРО:"))
         && (data[10].contains("ТВ-тюнер:")
                 || data[10].contains("ТВ без тюнера:")
                 || data[10].contains("Замена ТВ тюнера:")
                 || data[10].contains("Роутер:")
-                || data[10].contains("SIM карта:"))
+                || data[10].contains("SIM карта:")
+                || data[10].contains("Роутер ПРО:"))
         && (data[12].contains("ТВ-тюнер:")
                 || data[12].contains("ТВ без тюнера:")
                 || data[12].contains("Замена ТВ тюнера:")
                 || data[12].contains("Роутер:")
-                || data[12].contains("SIM карта:"))) {
+                || data[12].contains("SIM карта:")
+                || data[12].contains("Роутер ПРО:"))) {
             String installation = getInstall(data[8], data[9]);
             installation = getInstall(data[10], data[11], installation);
             installation = getInstall(data[12], data[13], installation);
@@ -56,12 +59,14 @@ public class Parser {
                 || data[8].contains("ТВ без тюнера:")
                 || data[8].contains("Замена ТВ тюнера:")
                 || data[8].contains("Роутер:")
-                || data[8].contains("SIM карта:"))
+                || data[8].contains("SIM карта:")
+                || data[8].contains("Роутер ПРО:"))
                 && (data[10].contains("ТВ-тюнер:")
                 || data[10].contains("ТВ без тюнера:")
                 || data[10].contains("Замена ТВ тюнера:")
                 || data[10].contains("Роутер:")
-                || data[10].contains("SIM карта:"))) {
+                || data[10].contains("SIM карта:")
+                || data[10].contains("Роутер ПРО:"))) {
             String installation = getInstall(data[8], data[9]);
             installation = getInstall(data[10], data[11], installation);
             result.setInstallation(installation);
@@ -72,7 +77,8 @@ public class Parser {
                 || data[8].contains("ТВ без тюнера:")
                 || data[8].contains("Замена ТВ тюнера:")
                 || data[8].contains("Роутер:")
-                || data[8].contains("SIM карта:")) {
+                || data[8].contains("SIM карта:")
+                || data[8].contains("Роутер ПРО:")) {
             String installation = getInstall(data[8], data[9]);
             result.setInstallation(installation);
 
