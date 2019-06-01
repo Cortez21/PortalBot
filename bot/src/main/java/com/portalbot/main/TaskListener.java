@@ -41,12 +41,13 @@ public class TaskListener {
             String currentDate = dateIterator.next();
             switching(currentDate);
             List<Task> temp;
-            if (data.getBody() == null) {
+            try {
+                temp = parser.execute(data.getBody());
+            } catch (NullPointerException npe) {
                 i--;
                 LogWriter.add("Connection is broke. One more trying to connect...");
                 continue;
             }
-            temp = parser.execute(data.getBody());
             setDate(temp, currentDate);
             newTasks.addAll(temp);
         }
