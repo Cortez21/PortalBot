@@ -10,6 +10,7 @@ import java.util.Date;
 public class LogWriter {
     private static String tempLogData = "";
     private static String tempDialogData = "";
+    private static String lastDate;
 
 
     public static void add(String value) {
@@ -37,7 +38,10 @@ public class LogWriter {
     public static void save() {
         try {
             FileWriter writer = new FileWriter(String.format("files/logs/%s.log", new SimpleDateFormat("yyyy-MM-dd").format(new Date())), true);
+            FileWriter lastWriter = new FileWriter("files/logs/last.log", checkOldDate());
             writer.write(tempLogData);
+            lastWriter.write(tempLogData);
+            lastWriter.close();
             writer.close();
             tempLogData = "";
         } catch (IOException ioe) {
@@ -48,11 +52,23 @@ public class LogWriter {
     public static void saveDialog() {
         try {
             FileWriter writer = new FileWriter(String.format("files/logs/%sd.log", new SimpleDateFormat("yyyy-MM-dd").format(new Date())), true);
+            FileWriter lastWriter = new FileWriter("files/logs/lastDialog.log", checkOldDate());
             writer.write(tempDialogData);
-            writer.close();
+            lastWriter.write(tempDialogData);
+            lastWriter.close();
             tempDialogData = "";
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+    }
+
+    public static boolean checkOldDate() {
+        boolean result = true;
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        if (!currentDate.equals(lastDate)) {
+            result = false;
+            lastDate = currentDate;
+        }
+        return result;
     }
 }
