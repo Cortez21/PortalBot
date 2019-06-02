@@ -37,7 +37,10 @@ public class LogWriter {
     public static void save() {
         try {
             FileWriter writer = new FileWriter(String.format("files/logs/%s.log", new SimpleDateFormat("yyyy-MM-dd").format(new Date())), true);
+            FileWriter lastWriter = new FileWriter("files/logs/last.log", true);
             writer.write(tempLogData);
+            lastWriter.write(tempLogData);
+            lastWriter.close();
             writer.close();
             tempLogData = "";
         } catch (IOException ioe) {
@@ -48,8 +51,10 @@ public class LogWriter {
     public static void saveDialog() {
         try {
             FileWriter writer = new FileWriter(String.format("files/logs/%sd.log", new SimpleDateFormat("yyyy-MM-dd").format(new Date())), true);
+            FileWriter lastWriter = new FileWriter("files/logs/lastDialog.log", true);
             writer.write(tempDialogData);
-            writer.close();
+            lastWriter.write(tempDialogData);
+            lastWriter.close();
             tempDialogData = "";
         } catch (IOException ioe) {
             ioe.printStackTrace();
