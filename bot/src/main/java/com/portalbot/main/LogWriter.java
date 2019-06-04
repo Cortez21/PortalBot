@@ -39,6 +39,7 @@ public class LogWriter {
         try {
             FileWriter writer = new FileWriter(String.format("files/logs/%s.log", new SimpleDateFormat("yyyy-MM-dd").format(new Date())), true);
             FileWriter lastWriter = new FileWriter("files/logs/last.log", checkOldDate());
+
             writer.write(tempLogData);
             lastWriter.write(tempLogData);
             lastWriter.close();
@@ -53,6 +54,7 @@ public class LogWriter {
         try {
             FileWriter writer = new FileWriter(String.format("files/logs/%sd.log", new SimpleDateFormat("yyyy-MM-dd").format(new Date())), true);
             FileWriter lastWriter = new FileWriter("files/logs/lastDialog.log", checkOldDate());
+
             writer.write(tempDialogData);
             lastWriter.write(tempDialogData);
             lastWriter.close();
