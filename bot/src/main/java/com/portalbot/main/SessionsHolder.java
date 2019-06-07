@@ -14,7 +14,12 @@ public class SessionsHolder {
         sessions = serializer.loadSessions();
         List<String> alarms = new ArrayList<>();
         for (String chatID : sessions) {
-            tasks.put(chatID, listener.listen(chatID));
+            try {
+                tasks.put(chatID, listener.listen(chatID));
+            } catch (BadLoggingException ble) {
+                LogWriter.add("Wrong logging data or connection was breaking. Go next...");
+                continue;
+            }
             if (!checkingIfWasTheMessage() && listener.checkingForClosing(chatID)) {
                 LogWriter.add(String.format("Detected non-closed tasks chatID's : %s", chatID));
                 alarms.add(chatID);

@@ -22,8 +22,10 @@ public class Parser {
         result.setTime(getTime(data[0]));
         result.setAccount(getAccount(data[3]));
         result.setAddress(getAddress(data[4]));
+        result.setAddressId(getAddressId(data[4]));
         result.setName(getName(data[5]));
         result.setTaskType(getType(data[6]));
+        result.setPortalTaskNumber(getPortalTaskNumber(data[1]));
         if (result.getTaskNumber().equals("none") && result.getAccount().equals("none")) {
             result.setTaskNumber(result.getName());
         } else if (result.getTaskNumber().equals("none")) {
@@ -172,5 +174,18 @@ public class Parser {
             result = splitted[1];
         }
         return result;
+    }
+
+    public String getPortalTaskNumber(String source) {
+        String result = "None";
+        String[] splitted = source.split("editRequest")[1].split("</a><br/>");
+        if (splitted.length > 1) {
+            result = splitted[0].substring(10);
+        }
+        return result;
+    }
+
+    public String getAddressId(String source) {
+        return source.split("addrid=\"")[1].substring(0, 5);
     }
 }

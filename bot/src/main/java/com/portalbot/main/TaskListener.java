@@ -10,6 +10,7 @@ public class TaskListener {
     private Serializer serializer;
     private Parser parser;
     private GarbageCollector gc = new GarbageCollector();
+    private PortalRequester requester;
 
     public TaskListener() {
         data = new DataStream();
@@ -18,8 +19,9 @@ public class TaskListener {
         parser = new Parser();
     }
 
-    public List<Task> listen(String chatID) {
+    public List<Task> listen(String chatID) throws BadLoggingException {
         User user = serializer.loadTasks(chatID);
+        requester = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
         List<Task> newTasks = new ArrayList<>();
         Map<String, Task> oldTasks;
         List<Task> result;
@@ -49,6 +51,7 @@ public class TaskListener {
                 continue;
             }
             setDate(temp, currentDate);
+            setOwnersChatID(temp, chatID);
             newTasks.addAll(temp);
         }
 
@@ -82,12 +85,12 @@ public class TaskListener {
             Task oldTask = oldTasks.get(newTask.getTaskNumber());
             if (!oldTasks.containsKey(newTask.getTaskNumber())) {
                 LogWriter.add(String.format("Detected a new task %s", newTask.getTaskNumber()));
-                newTask.setStatusMessage("ДОБАВЛЕНА НОВАЯ ЗАЯВКА: ");
+                newTask.setStatusMessage(String.format("ДОБАВЛЕНА [НОВАЯ ЗАЯВКА](https://portal.alpm.com.ua/index.php?action=editWorkRequest_new&id=%s): ", newTask.getPortalTaskNumber()));
                 result.add(newTask);
             } else if ((oldTask != null && !oldTask.getDate().equals(newTask.getDate()) && oldTask.getAddress().equals(newTask.getAddress()))
                     || (oldTask != null && !oldTask.getTime().equals(newTask.getTime())) && oldTask.getAddress().equals(newTask.getAddress())) {
                 LogWriter.add(String.format("Detected moving the task %s", newTask.getTaskNumber()));
-                newTask.setStatusMessage(String.format("ЗАВКА ПЕРЕНЕСЕНА С %s(%s) НА %s(%s)", oldTask.getDate(), oldTask.getTime(), newTask.getDate(), newTask.getTime()));
+                newTask.setStatusMessage(String.format("[ЗАЯВКА](https://portal.alpm.com.ua/index.php?action=editWorkRequest_new&id=%s) ПЕРЕНЕСЕНА С %s(%s) НА %s(%s)",newTask.getPortalTaskNumber(), oldTask.getDate(), oldTask.getTime(), newTask.getDate(), newTask.getTime()));
                 result.add(newTask);
             }
         }
@@ -119,5 +122,9 @@ public class TaskListener {
             }
         }
         return result;
+    }
+
+    public void setOwnersChatID(List<Task> tasks, String chatID) {
+        tasks.forEach(task -> task.setOwnersChatID(chatID));
     }
 }
