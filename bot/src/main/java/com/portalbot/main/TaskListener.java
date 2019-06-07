@@ -90,7 +90,7 @@ public class TaskListener {
             } else if ((oldTask != null && !oldTask.getDate().equals(newTask.getDate()) && oldTask.getAddress().equals(newTask.getAddress()))
                     || (oldTask != null && !oldTask.getTime().equals(newTask.getTime())) && oldTask.getAddress().equals(newTask.getAddress())) {
                 LogWriter.add(String.format("Detected moving the task %s", newTask.getTaskNumber()));
-                newTask.setStatusMessage(String.format("[ЗАЯВКА](https://portal.alpm.com.ua/index.php?action=editWorkRequest_new&id=%s) ПЕРЕНЕСЕНА С %s(%s) НА %s(%s)",newTask.getPortalTaskNumber(), oldTask.getDate(), oldTask.getTime(), newTask.getDate(), newTask.getTime()));
+                newTask.setStatusMessage(String.format("[ЗАЯВКА](https://portal.alpm.com.ua/index.php?action=editWorkRequest_new&id=%s) ПЕРЕНЕСЕНА С %s(%s) НА %s(%s)", newTask.getPortalTaskNumber(), oldTask.getDate(), oldTask.getTime(), newTask.getDate(), newTask.getTime()));
                 result.add(newTask);
             }
         }

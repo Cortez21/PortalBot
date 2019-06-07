@@ -163,12 +163,12 @@ public class Task implements Serializable {
                 .append(date).append(whenWillItBe(date)).append(ls)
                 .append(time).append(ls)
                 .append(String.format("_%s_", taskType)).append(ls)
-                .append(getTariff() != null? String.format("Пакет: %s \n", getTariff()): "")
+                .append(getTariff() != null ? String.format("Пакет: %s \n", getTariff()) : "")
                 .append(String.format("[%s](https://portal.alpm.com.ua/headless.php?action=addrBrief&id=%s)", address, addressId)).append(ls)
                 .append("Абонент: ").append(name).append(ls)
                 .append("тел.: ").append(phoneNumber).append(ls)
                 .append(getInstallationString())
-                .append(taskType.contains("Сервис-Жалобы на обслуживание")? checkCableBreaking(): "")
+                .append(taskType.contains("Сервис-Жалобы на обслуживание") ? checkCableBreaking() : "")
                 .toString();
     }
 
