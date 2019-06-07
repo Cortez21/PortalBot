@@ -186,6 +186,6 @@ public class Parser {
     }
 
     public String getAddressId(String source) {
-        return source.split("addrid=\"")[1].substring(0, 5);
+        return source.split("addrid=\"")[1].split("\"")[0];
     }
 }
