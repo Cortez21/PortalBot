@@ -4,6 +4,8 @@ import org.telegram.telegrambots.api.objects.Message;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Serializer {
     private String mainPath = "files/";
@@ -219,6 +221,36 @@ public class Serializer {
             e.printStackTrace();
         }
         return result;
+    }
+
+
+    public void makeUsersImage() {
+        Map<String, List<String>> usersData = new HashMap();
+        for (String chatID : loadUserList()) {
+            User oldUser = loadUser(chatID);
+            usersData.put(chatID, Stream.of(oldUser.getPortalLogin(), oldUser.getPortalPassword()).collect(Collectors.toList()));
+        }
+        try {
+            saveObject(usersData, "usersImage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void recreateUsersFromImage() {
+        Map<String, List<String>> usersImage = null;
+        try {
+            usersImage = (Map<String, List<String>>) loadObject("usersImage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (String chatID : usersImage.keySet()) {
+            List<String> values = usersImage.get(chatID);
+            User user = new User(chatID, values.get(0), values.get(1));
+            userRegistration(user);
+        }
     }
 
 

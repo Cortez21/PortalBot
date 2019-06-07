@@ -1,5 +1,6 @@
 package com.portalbot.main;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Terminal {
@@ -60,6 +61,15 @@ public class Terminal {
                     closeSession(data[1]);
                     System.out.println("Done!");
                 }
+            } else if (answer.contains("/makeImage")) {
+                serializer.makeUsersImage();
+                System.out.println("Done!");
+            } else if (answer.contains("/loadImage")) {
+                serializer.recreateUsersFromImage();
+                System.out.println("Done!");
+            } else if (answer.contains("/parseTasks")) {
+                holder.ask();
+                System.out.println("Done!");
             }
             }
 
