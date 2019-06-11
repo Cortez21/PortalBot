@@ -18,8 +18,14 @@ public class Launch {
         System.out.println(new Date().toString());
         Serializer serializer = new Serializer();
         SessionsHolder holder = new SessionsHolder();
-        FileWriter fw = new FileWriter("test.txt");
-
+        User user = new Serializer().loadUser("551140537");
+        PortalRequester requester;
+        try {
+            requester = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
+            System.out.println(requester.switchingToDate("2019-06-08"));
+        } catch (BadLoggingException e) {
+            e.printStackTrace();
+        }
 
     }
 

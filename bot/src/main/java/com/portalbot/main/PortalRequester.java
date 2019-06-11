@@ -32,7 +32,7 @@ public class PortalRequester {
         int currentTryings = 0;
         while (!success && currentTryings < tryings) {
             success = loggingRequest();
-            tryings++;
+            currentTryings++;
         }
         if (!success) {
             throw new BadLoggingException("Wrong pair: login/password or connection was broken");

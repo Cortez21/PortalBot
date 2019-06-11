@@ -158,12 +158,13 @@ public class Task implements Serializable {
 
     public String toMessage() {
         String ls = System.lineSeparator();
+        String tariff = getTariff();
         return new StringBuilder()
                 .append(statusMessage).append(ls)
                 .append(date).append(whenWillItBe(date)).append(ls)
                 .append(time).append(ls)
                 .append(String.format("_%s_", taskType)).append(ls)
-                .append(getTariff() != null ? String.format("Пакет: %s \n", getTariff()) : "")
+                .append(tariff != null ? String.format("Пакет: %s \n", tariff) : "")
                 .append(String.format("[%s](https://portal.alpm.com.ua/headless.php?action=addrBrief&id=%s)", address, addressId)).append(ls)
                 .append("Абонент: ").append(name).append(ls)
                 .append("тел.: ").append(phoneNumber).append(ls)
@@ -233,6 +234,7 @@ public class Task implements Serializable {
     public String getTariff() {
         String result = null;
         String pageBody = getRequester().switchingToTask(portalTaskNumber);
+        LogWriter.add("Trying to get tariff...");
         if (pageBody.contains("selected >")) {
             result = pageBody.split("selected >")[1].split("</option>")[0];
             result = result.replace("_", " ")
