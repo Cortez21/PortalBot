@@ -60,5 +60,12 @@ public class PortalRequester {
         return data.getBody();
     }
 
+    public String checkRouter(String account) {
+        data.setQuery("https://portal.alpm.com.ua/headless.php");
+        data.setParams(String.format("action=checkSBMSRouter&account=%s", account));
+        data = connection.start(data);
+        return data.getBody();
+    }
+
 
 }
