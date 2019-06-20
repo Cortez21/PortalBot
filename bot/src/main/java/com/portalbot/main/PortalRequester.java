@@ -6,11 +6,12 @@ public class PortalRequester {
     private String login;
     private String password;
 
-    public PortalRequester(String login, String password) throws BadLoggingException {
+    public PortalRequester(String chatID) throws BadLoggingException {
+        User user = new Serializer().loadUser(chatID);
         data = new DataStream();
         connection = new Connection();
-        this.login = login;
-        this.password = password;
+        this.login = user.getPortalLogin();
+        this.password = user.getPortalPassword();
         tryToLogging(5);
     }
 

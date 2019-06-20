@@ -21,7 +21,7 @@ public class TaskListener {
 
     public List<Task> listen(String chatID) throws BadLoggingException {
         User user = serializer.loadTasks(chatID);
-        requester = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
+        requester = new PortalRequester(chatID);
         List<Task> newTasks = new ArrayList<>();
         Map<String, Task> oldTasks;
         List<Task> result;

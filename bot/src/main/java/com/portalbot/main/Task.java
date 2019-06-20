@@ -246,9 +246,8 @@ public class Task implements Serializable {
 
     public PortalRequester getRequester() {
         PortalRequester requester = null;
-        User user = new Serializer().loadUser(ownersChatID);
         try {
-            requester  = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
+            requester  = new PortalRequester(ownersChatID);
         } catch (BadLoggingException ble) {
             LogWriter.add(ble.getMessage());
         }

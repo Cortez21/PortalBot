@@ -20,13 +20,19 @@ public class Launch {
         SessionsHolder holder = new SessionsHolder();
         User user = new Serializer().loadUser("551140537");
         PortalRequester requester;
-        try {
-            requester = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
-            System.out.println(requester.switchingToDate("2019-06-08"));
-        } catch (BadLoggingException e) {
-            e.printStackTrace();
+//        try {
+//            requester = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
+//            System.out.println(requester.switchingToDate("2019-06-08"));
+//        } catch (BadLoggingException e) {
+//            e.printStackTrace();
+//        }
+        logging(user.getPortalLogin(), user.getPortalPassword());
+        for (int i = 0; i < 10; i++) {
+            data.setQuery("https://portal.alpm.com.ua/headless.php");
+            data.setParams(String.format("action=checkSBMSRouter&account=9039690"));
+            data = connection.start(data);
+            System.out.println(data.getBody());
         }
-
     }
 
     public static void logging(String login, String password) {

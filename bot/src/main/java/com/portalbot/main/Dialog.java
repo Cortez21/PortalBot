@@ -7,7 +7,7 @@ public class Dialog {
         SessionsHolder holder = new SessionsHolder();
         Authorizer authorizer = new Authorizer();
         String text = message.getText();
-        String result;
+        String result = null;
         if (text.contains("/registration")) {
             String[] splitted = text.split(" ");
             if (splitted.length < 3) {
@@ -37,6 +37,13 @@ public class Dialog {
                 result = "Прослушивание заявок отключено";
             } else {
                 result = "Ошибка! Обратитесь к администратору https://t.me/CortezZz13th";
+            }
+        } else if (text.contains("/cr")) {
+            String[] splitted = text.split(" ");
+            if (splitted.length != 2) {
+                result = "Ошибка при вводе даннных. Используйте следующий формат: /cr (ЛИЦЕВОЙ СЧЕТ)";
+            } else {
+                result = new RouterChecker().tryingToCheck(splitted[1], message.getChatId().toString());
             }
         } else {
             result = "Привет монтажник! \n Список доступных команд: \n /registration ЛОГИН ПАРОЛЬ - Регистрация с использованием логина и пароля для входа в чистему https://portal.alpm.com.ua \n /listen - Прослушивание входящих заявок. Доступно после регистрации \n /notlisten - Отключение прослушивания входящих заявок";
