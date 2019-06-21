@@ -42,8 +42,10 @@ public class Dialog {
             String[] splitted = text.split(" ");
             if (splitted.length != 2) {
                 result = "Ошибка при вводе даннных. Используйте следующий формат: /cr (ЛИЦЕВОЙ СЧЕТ)";
-            } else {
+            } else if (authorizer.checkRegistration(message)) {
                 result = new RouterChecker().tryingToCheck(splitted[1], message.getChatId().toString());
+            } else if (!authorizer.checkRegistration(message)) {
+                result = "Сперва нужно зарегистрироваться!";
             }
         } else {
             result = "Привет монтажник! \n Список доступных команд: \n /registration ЛОГИН ПАРОЛЬ - Регистрация с использованием логина и пароля для входа в чистему https://portal.alpm.com.ua \n /listen - Прослушивание входящих заявок. Доступно после регистрации \n /notlisten - Отключение прослушивания входящих заявок";
