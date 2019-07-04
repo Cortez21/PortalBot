@@ -14,7 +14,7 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Map;
 
-public class Connection {
+public class HttpConnection {
 
     public DataStream start(DataStream data) {
 
@@ -61,7 +61,7 @@ public class Connection {
     }
 
     private String readResponseBody(HttpURLConnection connection) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = bf.readLine()) != null) {

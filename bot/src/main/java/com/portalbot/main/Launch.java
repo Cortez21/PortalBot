@@ -1,38 +1,28 @@
 package com.portalbot.main;
 
 
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class Launch {
     private static DataStream data;
-    private static Connection connection;
-    public static void main(String[] args) throws IOException {
+    private static HttpConnection connection;
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
         data = new DataStream();
-        connection = new Connection();
+        connection = new HttpConnection();
         System.out.println(new Date().toString());
         Serializer serializer = new Serializer();
         SessionsHolder holder = new SessionsHolder();
         User user = new Serializer().loadUser("551140537");
         PortalRequester requester;
-//        try {
-//            requester = new PortalRequester(user.getPortalLogin(), user.getPortalPassword());
-//            System.out.println(requester.switchingToDate("2019-06-08"));
-//        } catch (BadLoggingException e) {
-//            e.printStackTrace();
-//        }
-        logging(user.getPortalLogin(), user.getPortalPassword());
-        for (int i = 0; i < 10; i++) {
-            data.setQuery("https://portal.alpm.com.ua/headless.php");
-            data.setParams(String.format("action=checkSBMSRouter&account=9039690"));
-            data = connection.start(data);
-            System.out.println(data.getBody());
-        }
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library","root", "qweds44r");
+        conn.close();
     }
 
     public static void logging(String login, String password) {

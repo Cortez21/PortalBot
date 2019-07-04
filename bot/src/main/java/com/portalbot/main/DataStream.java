@@ -21,7 +21,7 @@ public class DataStream {
         properties.put("Accept-Encoding", "gzip, deflate, br");
         properties.put("Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,pl;q=0.6");
         properties.put("Cache-Control", "max-age=0");
-        properties.put("Connection", "keep-alive");
+        properties.put("HttpConnection", "keep-alive");
         properties.put("Host", "portal.alpm.com.ua");
         properties.put("Upgrade-Insecure-Requests", "1");
         properties.put("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/71.0.3578.98 Chrome/71.0.3578.98 Safari/537.36");

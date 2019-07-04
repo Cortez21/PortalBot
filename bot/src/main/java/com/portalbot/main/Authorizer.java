@@ -4,7 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.telegram.telegrambots.api.objects.Message;
 
 public class Authorizer {
-    private Connection connection = new Connection();
+    private HttpConnection httpConnection = new HttpConnection();
     private Serializer serializer = new Serializer();
     private DataStream data = new DataStream();
 
@@ -25,7 +25,7 @@ public class Authorizer {
     public void logging(String login, String password) {
         data.setQuery("https://portal.alpm.com.ua/index.php?action=login");
         data.setParams(String.format("login=%s&password=%s", login, password));
-        data = connection.start(data);
+        data = httpConnection.start(data);
     }
     public boolean checkRegistration(Message message) {
         boolean result = false;

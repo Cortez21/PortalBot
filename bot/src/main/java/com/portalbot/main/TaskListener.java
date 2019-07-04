@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class TaskListener {
     private DataStream data;
-    private Connection connection;
+    private HttpConnection httpConnection;
     private Serializer serializer;
     private Parser parser;
     private GarbageCollector gc = new GarbageCollector();
@@ -14,7 +14,7 @@ public class TaskListener {
 
     public TaskListener() {
         data = new DataStream();
-        connection = new Connection();
+        httpConnection = new HttpConnection();
         serializer = new Serializer();
         parser = new Parser();
     }
@@ -47,7 +47,7 @@ public class TaskListener {
                 temp = parser.execute(data.getBody());
             } catch (NullPointerException npe) {
                 i--;
-                LogWriter.add("Connection is broke. One more trying to connect...");
+                LogWriter.add("HttpConnection is broke. One more trying to connect...");
                 continue;
             }
             setDate(temp, currentDate);
@@ -69,14 +69,14 @@ public class TaskListener {
         LogWriter.add(String.format("Logging in to login: %s", login));
         data.setQuery("https://portal.alpm.com.ua/index.php?action=login");
         data.setParams(String.format("login=%s&password=%s", login, password));
-        data = connection.start(data);
+        data = httpConnection.start(data);
     }
 
     public void switching(String date) {
         LogWriter.add(String.format("Switching to date: %s", date));
         data.setQuery("https://portal.alpm.com.ua/headless.php");
         data.setParams(String.format("action=workschedule1&city=&data=%s", date));
-        data = connection.start(data);
+        data = httpConnection.start(data);
     }
 
     public List<Task> compareTasks(Map<String, Task> oldTasks, List<Task> newTasks) {
