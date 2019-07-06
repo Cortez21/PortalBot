@@ -13,6 +13,7 @@ public class Parser {
         for (String value : newSourceTasks) {
             result.add(taskParser(value));
         }
+        LogWriter.add("Parsing successful");
         return result;
     }
 

@@ -14,17 +14,29 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import java.util.TimerTask;
 
 public class Bot extends TelegramLongPollingBot {
 
-    private static String token;
-    private static String name;
+    private static ConfigReader config;
 
     public static void main(String[] args) {
-        getRequisites();
+        try {
+            config = new ConfigReader();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         new Bot().startTimer(300000);
@@ -114,23 +126,11 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return name;
+        return config.getTelegram_bot_name();
     }
 
     @Override
     public String getBotToken() {
-        return token;
-    }
-
-    public static void getRequisites() {
-        try {
-            FileReader fr = new FileReader("files/botRequisites.txt");
-            Scanner scanner = new Scanner(fr);
-            name = scanner.nextLine().substring(5);
-            token = scanner.nextLine().substring(6);
-        } catch (IOException e) {
-            LogWriter.add("botRequisites.txt not found!");
-            e.printStackTrace();
-        }
+        return config.getTelegram_bot_token();
     }
 }
