@@ -84,6 +84,8 @@ public class Bot extends TelegramLongPollingBot {
                                         LogWriter.add(String.format("Sending alarm to %s about non-closed tasks", chatID));
                                     }
                                 }
+
+
                             } catch (Exception e) {
                                 LogWriter.add(e.toString());
                                 e.printStackTrace();

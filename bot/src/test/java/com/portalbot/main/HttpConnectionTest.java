@@ -12,16 +12,16 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class ConnectionTest {
+public class HttpConnectionTest {
     @Test
     public void whenSettingSomeProperties() throws IOException {
-        Connection connection = new Connection();
+        HttpConnection httpConnection = new HttpConnection();
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://localhost/").openConnection();
         Map<String, String> properties = new HashMap<>();
         properties.put("pr1", "value1");
         properties.put("pr2", "value2");
         properties.put("pr3", "value3");
-        connection.setProperties(httpURLConnection, properties);
+        httpConnection.setProperties(httpURLConnection, properties);
         assertThat(httpURLConnection.getHeaderFields(), is(httpURLConnection.getHeaderFields()));
     }
 }

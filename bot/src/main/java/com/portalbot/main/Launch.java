@@ -1,12 +1,10 @@
 package com.portalbot.main;
 
 
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.*;
+import java.util.Date;
 
 
 public class Launch {
@@ -20,9 +18,33 @@ public class Launch {
         SessionsHolder holder = new SessionsHolder();
         User user = new Serializer().loadUser("551140537");
         PortalRequester requester;
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library","root", "qweds44r");
-        conn.close();
+//        String mysqlUser = "root";
+//        String pass = "qweds44r";
+//        String query = "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        try (Connection conn = DriverManager.getConnection(query, mysqlUser, pass);
+//             Statement statement = conn.createStatement()) {
+//            System.out.println("We're connected");
+//            ResultSet results = statement.executeQuery("SELECT title, author, year_issue, publisher FROM book, author, publisher WHERE book.id_author=author.id_author && book.id_publisher=publisher.id_publisher");
+//            while (results.next()) {
+//                System.out.println(String.format("Title: %s, Author: %s, Year: %s, Publisher: %s", results.getString(1), results.getString(2), results.getString(3), results.getString(4)));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//
+//        }
+        try {
+            ConfigReader config = new ConfigReader();
+            System.out.println("Database name:" + config.getMysql_database_name() + " Password:" + config.getMysql_database_password());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void logging(String login, String password) {
