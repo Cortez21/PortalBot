@@ -33,18 +33,9 @@ public class Launch {
 //            e.printStackTrace();
 //
 //        }
-        try {
-            ConfigReader config = new ConfigReader();
-            System.out.println("Database name:" + config.getMysql_database_name() + " Password:" + config.getMysql_database_password());
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        MySQLRequester mySQLRequester = new MySQLRequester();
+        System.out.println(mySQLRequester.getUser("1111111111").getPortalPassword());
+
     }
 
     public static void logging(String login, String password) {

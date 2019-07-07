@@ -1,5 +1,7 @@
 package com.portalbot.main;
 
+import com.portalbot.main.exceptions.BadLoggingException;
+
 public class RouterChecker {
    public String tryingToCheck(String account, String chatID) {
        String result = null;

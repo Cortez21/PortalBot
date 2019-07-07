@@ -1,5 +1,7 @@
 package com.portalbot.main;
 
+import com.portalbot.main.exceptions.BadLoggingException;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -124,7 +124,7 @@ public class Parser {
 
     public String getName(String source) {
         String[] splitted = source.split("</td>");
-        return splitted[0].substring(1);
+        return splitted[0].substring(1).replace("*", "");
     }
 
     public String getType(String source) {

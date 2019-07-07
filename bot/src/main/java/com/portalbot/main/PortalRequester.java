@@ -1,5 +1,7 @@
 package com.portalbot.main;
 
+import com.portalbot.main.exceptions.BadLoggingException;
+
 public class PortalRequester {
     private DataStream data;
     private HttpConnection httpConnection;
