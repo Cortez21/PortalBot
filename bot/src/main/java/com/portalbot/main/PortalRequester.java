@@ -9,7 +9,7 @@ public class PortalRequester {
     private String password;
 
     public PortalRequester(String chatID) throws BadLoggingException {
-        User user = new Serializer().loadUser(chatID);
+        User user = new MySQLRequester().getUser(chatID);
         data = new DataStream();
         httpConnection = new HttpConnection();
         this.login = user.getPortalLogin();

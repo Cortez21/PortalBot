@@ -18,23 +18,8 @@ public class Launch {
         SessionsHolder holder = new SessionsHolder();
         User user = new Serializer().loadUser("551140537");
         PortalRequester requester;
-//        String mysqlUser = "root";
-//        String pass = "qweds44r";
-//        String query = "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        try (Connection conn = DriverManager.getConnection(query, mysqlUser, pass);
-//             Statement statement = conn.createStatement()) {
-//            System.out.println("We're connected");
-//            ResultSet results = statement.executeQuery("SELECT title, author, year_issue, publisher FROM book, author, publisher WHERE book.id_author=author.id_author && book.id_publisher=publisher.id_publisher");
-//            while (results.next()) {
-//                System.out.println(String.format("Title: %s, Author: %s, Year: %s, Publisher: %s", results.getString(1), results.getString(2), results.getString(3), results.getString(4)));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//
-//        }
+        System.out.println(String.format("chatID: %s, Login: %s, Password: %s", user.getChatID(), user.getPortalLogin(), user.getPortalPassword()));
         MySQLRequester mySQLRequester = new MySQLRequester();
-        System.out.println(mySQLRequester.getUser("1111111111").getPortalPassword());
 
     }
 

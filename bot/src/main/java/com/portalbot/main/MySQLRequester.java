@@ -27,19 +27,7 @@ public class MySQLRequester {
         }
     }
 
-    public void checkTheTables() {
-        try (Connection conn = DriverManager.getConnection(query, mysqlUser, pass);
-             Statement statement = conn.createStatement()) {
-            System.out.println("We're connected");
-            ResultSet results = statement.executeQuery("SELECT * FROM router_activation");
-            while (results.next()) {
-                System.out.println(String.format("%s %s %s",results.getString(1), results.getString(2), results.getString(4)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
 
-        }
-    }
 
     public User getUser(String chatID) {
         User result = null;
