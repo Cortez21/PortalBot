@@ -33,9 +33,9 @@ public class MySQLRequester {
         User result = null;
         try (Connection conn = DriverManager.getConnection(query, mysqlUser, pass);
         Statement statement = conn.createStatement()) {
-            ResultSet results = statement.executeQuery("SELECT * FROM users WHERE chatID=chatID");
+            ResultSet results = statement.executeQuery(String.format("SELECT * FROM users WHERE chat_id=%s", chatID));
             while (results.next()) {
-                result = new User(results.getString("chatID"), results.getString("portalLogin"), results.getString("portalPassword"));
+                result = new User(results.getString("chat_id"), results.getString("portalLogin"), results.getString("portalPassword"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

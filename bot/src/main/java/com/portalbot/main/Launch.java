@@ -16,10 +16,7 @@ public class Launch {
         System.out.println(new Date().toString());
         Serializer serializer = new Serializer();
         SessionsHolder holder = new SessionsHolder();
-        User user = new Serializer().loadUser("551140537");
-        PortalRequester requester;
-        System.out.println(String.format("chatID: %s, Login: %s, Password: %s", user.getChatID(), user.getPortalLogin(), user.getPortalPassword()));
-        MySQLRequester mySQLRequester = new MySQLRequester();
+        System.out.println(new MySQLRequester().getUser("797003480").getPortalPassword());
 
     }
 

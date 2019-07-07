@@ -14,6 +14,7 @@ public class PortalRequester {
         httpConnection = new HttpConnection();
         this.login = user.getPortalLogin();
         this.password = user.getPortalPassword();
+        System.out.println(chatID + " " + login + " " + password);
         tryToLogging(5);
     }
 
