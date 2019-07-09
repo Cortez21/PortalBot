@@ -10,7 +10,7 @@ public class TaskListener {
     private DataStream data;
     private HttpConnection httpConnection;
     private Serializer serializer;
-    private Parser parser;
+    private TaskParser taskParser;
     private GarbageCollector gc = new GarbageCollector();
     private PortalRequester requester;
 
@@ -18,7 +18,7 @@ public class TaskListener {
         data = new DataStream();
         httpConnection = new HttpConnection();
         serializer = new Serializer();
-        parser = new Parser();
+        taskParser = new TaskParser();
     }
 
     public List<Task> listen(String chatID) throws BadLoggingException {
@@ -46,7 +46,7 @@ public class TaskListener {
             switching(currentDate);
             List<Task> temp;
             try {
-                temp = parser.execute(data.getBody());
+                temp = taskParser.execute(data.getBody());
             } catch (NullPointerException npe) {
                 i--;
                 LogWriter.add("HttpConnection is broke. One more trying to connect...");

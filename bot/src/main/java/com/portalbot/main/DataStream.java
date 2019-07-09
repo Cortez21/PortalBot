@@ -64,6 +64,10 @@ public class DataStream {
         this.properties = temp;
     }
 
+    public void addProperty(String key, String value) {
+        properties.put(key, value);
+    }
+
     public void setParams(String params) {
         this.params = params;
     }

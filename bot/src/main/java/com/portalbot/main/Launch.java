@@ -1,10 +1,14 @@
 package com.portalbot.main;
 
 
+import com.portalbot.main.exceptions.BadLoggingException;
+import com.portalbot.main.queue.QueueParser;
+import com.portalbot.main.queue.QueueTask;
+
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.Date;
+import java.util.List;
 
 
 public class Launch {
@@ -16,7 +20,12 @@ public class Launch {
         System.out.println(new Date().toString());
         Serializer serializer = new Serializer();
         SessionsHolder holder = new SessionsHolder();
-        System.out.println(new MySQLRequester().getUser("797003480").getPortalPassword());
+        QueueParser parser = new QueueParser();
+        MySQLRequester mySQLRequester = new MySQLRequester();
+        List<String> result = mySQLRequester.getQueueTaskList();
+        for (String value : result) {
+            System.out.println(value);
+        }
 
     }
 

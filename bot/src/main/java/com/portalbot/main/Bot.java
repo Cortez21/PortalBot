@@ -1,5 +1,7 @@
 package com.portalbot.main;
 
+import com.portalbot.main.queue.QueueListener;
+import com.portalbot.main.queue.QueueTask;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -60,6 +62,20 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    public synchronized void sendMsg(String chatID, String text) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.enableMarkdown(true);
+        long longChatID = Long.valueOf(chatID);
+        sendMessage.setChatId(longChatID);
+        sendMessage.setText(text);
+        try {
+            setButtons(sendMessage);
+            sendMessage(sendMessage);
+        } catch (TelegramApiException tae) {
+            tae.printStackTrace();
+        }
+    }
+
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         Dialog dialog = new Dialog();
@@ -79,6 +95,7 @@ public class Bot extends TelegramLongPollingBot {
                                 Serializer serializer = new Serializer();
                                 Map<String, List<Task>> tasksMap = response.getTasks();
                                 List<String> alarms = response.getAlarmsForClosingTasks();
+                                QueueListener queueListener = new QueueListener();
                                 for (String chatID : tasksMap.keySet()) {
                                     Message message = serializer.loadMessage(chatID);
                                     List<Task> tasksList = tasksMap.get(chatID);
@@ -97,6 +114,9 @@ public class Bot extends TelegramLongPollingBot {
                                     }
                                 }
 
+                                for (QueueTask task : queueListener.listen()) {
+                                    sendMsg("-369223955", task.toQueueMessage());
+                                }
 
                             } catch (Exception e) {
                                 LogWriter.add(e.toString());
@@ -126,11 +146,11 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return config.getTelegram_bot_name();
+        return config.getTelegramBotName();
     }
 
     @Override
     public String getBotToken() {
-        return config.getTelegram_bot_token();
+        return config.getTelegramBotToken();
     }
 }

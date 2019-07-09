@@ -2,7 +2,7 @@ package com.portalbot.main;
 
 import java.util.*;
 
-public class Parser {
+public class TaskParser {
     public List<Task> execute(String body) {
         LogWriter.add("Parsing data...");
         List<String> sourceTasks = Arrays.asList(body.split("tr rowid="));

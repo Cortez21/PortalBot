@@ -2,6 +2,9 @@ package com.portalbot.main;
 
 import com.portalbot.main.exceptions.BadLoggingException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class PortalRequester {
     private DataStream data;
     private HttpConnection httpConnection;
@@ -14,7 +17,6 @@ public class PortalRequester {
         httpConnection = new HttpConnection();
         this.login = user.getPortalLogin();
         this.password = user.getPortalPassword();
-        System.out.println(chatID + " " + login + " " + password);
         tryToLogging(5);
     }
 
@@ -71,5 +73,27 @@ public class PortalRequester {
         return data.getBody();
     }
 
+    public String getQueue() {
+        data.addProperty("Referer", "https://portal.alpm.com.ua/index.php?action=requestlist_new&data_from=2019-07-08&data_to=2019-07-08&status=1&iscitygroup=0&type=1&show=1");
+        data.setQuery("https://portal.alpm.com.ua/tablerjson.php?query=requestlist_new");
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String params = new StringBuilder()
+                .append("query=requestlist_new&template=tplTable_json&vars=%7B%22data_from%22%3A%22")
+                .append(date)
+                .append("%22%2C%22data_to%22%3A%22")
+                .append(date)
+                .append("%22%2C%22network%22%3A%22%22%2C%22type%22%3A%22%22%2C%22subtype%22%3A%22%22%2C%22status%22%3A%221%22%2C%22city%22%3A%22%22%2C%22iscitygroup%22%3A0%7D&bodyOnly=0&buttons=1&showtotal=true&dynamiclimit=30")
+                .toString();
 
+        data.setParams(params);
+        data = httpConnection.start(data);
+        return data.getBody();
+    }
+
+    public String getTaskBody(String portalNumber) {
+        data.setQuery("https://portal.alpm.com.ua/index.php");
+        data.setParams(String.format("action=viewRequest&id=%s", portalNumber));
+        data = httpConnection.start(data);
+        return data.getBody();
+    }
 }

@@ -8,42 +8,42 @@ import java.lang.reflect.InvocationTargetException;
 
 @Cfg
 public class ConfigReader {
-    private String telegram_bot_name;
-    private String telegram_bot_token;
+    private String telegramBotName;
+    private String telegramBotToken;
 
-    private String mysql_database_name;
-    private String mysql_user_name;
-    private String mysql_database_password;
+    private String mysqlDatabaseName;
+    private String mysqlUserName;
+    private String mysqlDatabasePassword;
 
-    private int task_listening_time;
-    private int router_check_listening_time;
+    private int taskListeningTime;
+    private int routerCheckListeningTime;
 
-    public int getTask_listening_time() {
-        return task_listening_time;
+    public String getTelegramBotName() {
+        return telegramBotName;
     }
 
-    public String getMysql_database_name() {
-        return mysql_database_name;
+    public String getTelegramBotToken() {
+        return telegramBotToken;
     }
 
-    public String getMysql_database_password() {
-        return mysql_database_password;
+    public String getMysqlDatabaseName() {
+        return mysqlDatabaseName;
     }
 
-    public String getMysql_user_name() {
-        return mysql_user_name;
+    public String getMysqlUserName() {
+        return mysqlUserName;
     }
 
-    public String getTelegram_bot_name() {
-        return telegram_bot_name;
+    public String getMysqlDatabasePassword() {
+        return mysqlDatabasePassword;
     }
 
-    public int getRouter_check_listening_time() {
-        return router_check_listening_time;
+    public int getTaskListeningTime() {
+        return taskListeningTime;
     }
 
-    public String getTelegram_bot_token() {
-        return telegram_bot_token;
+    public int getRouterCheckListeningTime() {
+        return routerCheckListeningTime;
     }
 
     public ConfigReader() throws NoSuchMethodException, InstantiationException, IllegalAccessException, IOException, InvocationTargetException, InvocationTargetException, IOException {
