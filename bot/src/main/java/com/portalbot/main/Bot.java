@@ -115,7 +115,7 @@ public class Bot extends TelegramLongPollingBot {
                                 }
 
                                 for (QueueTask task : queueListener.listen()) {
-                                    sendMsg("-369223955", task.toQueueMessage());
+                                    sendMsg("-1001134058126", task.toQueueMessage());
                                 }
 
                             } catch (Exception e) {

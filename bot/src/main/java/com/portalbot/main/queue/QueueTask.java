@@ -22,6 +22,33 @@ public class QueueTask {
     private boolean inWorkMessage;
     private String entryDate;
     private String ls = System.lineSeparator();
+    private String port;
+    private String pairA;
+    private String pairB;
+
+    public String getPairB() {
+        return pairB;
+    }
+
+    public void setPairB(String pairB) {
+        this.pairB = pairB;
+    }
+
+    public String getPairA() {
+        return pairA;
+    }
+
+    public void setPairA(String pairA) {
+        this.pairA = pairA;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
 
     public String getEntryDate() {
         return entryDate;
@@ -185,24 +212,21 @@ public class QueueTask {
     }
 
     public String toQueueMessage() {
-        String planedDateStr = "";
-        String tariffStr = "";
-        if (planedDate != null) {
-            planedDateStr = String.format("Желаемая дата подключения: %s\n", planedDate);
-        }
-        if (tariff != null) {
-            tariffStr = String.format("Пакет: %s \n", tariff);
-        }
+
         return new StringBuilder()
                 .append("НОВАЯ ЗАЯВКА В ОЧЕРЕДИ").append(ls)
                 .append(type).append(" ").append(subType).append(ls)
-                .append(tariffStr)
-                .append(address).append(" ").append("кв.").append(flat).append(ls)
-                .append(planedDateStr)
+                .append(tariff != null ? String.format("Пакет: %s \n", tariff) : "")
+                .append(String.format("[%s, кв.%s](https://portal.alpm.com.ua/headless.php?action=addrBrief&id=%s)", address, flat, addressId)).append(ls)
+                .append(planedDate != null ? String.format("Желаемая дата подключения: %s \n", planedDate) : "")
                 .append(name).append(ls)
                 .append("Телефон: ").append(phoneNumber).append(" ").append(phoneNumber2 != null ? phoneNumber : "").append(ls)
                 .append("Срочная: ").append(urgent ? "Да" : "Нет").append(ls)
-                .append(installation != null ? String.format("Установка: %s", installation) : "")
+                .append(account != null ? String.format("Лицевой счет: %s \n", account) : "")
+                .append(taskNumber != null ? String.format("Номер наряда: %s \n", taskNumber) : "")
+                .append(port != null ? String.format("Порт абонента: %s \n", port) : "")
+                .append(installation != null ? String.format("Установка: %s \n", installation) : "")
+                .append(pairA != null && pairB != null ? String.format("Тест кабеля: PairA: %sm, PairB: %sm \n", pairA, pairB) : "")
                 .toString();
     }
 }

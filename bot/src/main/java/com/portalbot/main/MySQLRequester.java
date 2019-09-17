@@ -67,7 +67,7 @@ public class MySQLRequester {
     public void insertTask(QueueTask task) {
         try (Connection conn = DriverManager.getConnection(query, mysqlUser, pass);
              Statement statement = conn.createStatement()) {
-            statement.execute(String.format("INSERT INTO tasks VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            statement.execute(String.format("INSERT INTO tasks VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                     task.getPortalNumber(),
                     task.getTaskNumber(),
                     task.getType(),
@@ -87,7 +87,10 @@ public class MySQLRequester {
                     task.getOwnersChatId(),
                     task.isQueueMessage() ? 1 : 0,
                     task.isInWorkMessage() ? 1 : 0,
-                    task.getEntryDate()
+                    task.getEntryDate(),
+                    task.getPort(),
+                    task.getPairA(),
+                    task.getPairB()
             ));
         } catch (SQLException e) {
             e.printStackTrace();

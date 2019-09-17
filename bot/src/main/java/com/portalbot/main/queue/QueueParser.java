@@ -18,7 +18,15 @@ public class QueueParser {
     public QueueTask parseTask(String source) {
         QueueTask resultTask = new QueueTask();
         resultTask.setPortalNumber(source.split("Заявка №")[1].substring(0, 6));
-        resultTask.setTaskNumber(source.split("Наряд:</th><td>")[1].substring(0, 7));
+        if (resultTask.getPortalNumber().length() > 6) {
+            resultTask.setPortalNumber("000000");
+        }
+        if (source.contains("Наряд:</th><td>")) {
+            resultTask.setTaskNumber(source.split("Наряд:</th><td>")[1].substring(0, 7));
+            if (resultTask.getTaskNumber().length() > 7) {
+                resultTask.setTaskNumber(null);
+            }
+        }
         resultTask.setType(source.split("Тип:</th><td>")[1].split("</td></tr>")[0].replace(" ", "").replace("\n", ""));
         resultTask.setSubType(source.split("Подтип:</th><td classContext=\"subtype\" contextItem=")[1].split(">")[1].split("</td")[0]);
         if (source.contains("Лицевой счет:</th><td classContext=\"abon\" contextItem=")) {
@@ -26,20 +34,34 @@ public class QueueParser {
         }
         resultTask.setAddress(source.split("classContext=\"address\"")[1].split(">")[1].split("</td", 2)[0].replace(",", " "));
         resultTask.setFlat(source.split("Квартира:</th><td classContext=\"conFlat&id=")[1].split("\">")[0]);
-        resultTask.setName(source.split("Клиент:</th><td classContext=\"conClient\">")[1].split("</td></tr>", 2)[0].replace("*", "").replace("_", ""));
+        resultTask.setName(badCharRemover(source.split("Клиент:</th><td classContext=\"conClient\">")[1].split("</td></tr>", 2)[0]));
         if (source.contains("Пакет:</th><td classContext=\"package\" contextItem=\"")) {
-            resultTask.setTariff(source.split("Пакет:</th><td classContext=\"package\" contextItem=\"")[1].split("\">")[1].split("</td></tr>")[0]);
+            resultTask.setTariff(badCharRemover(source.split("Пакет:</th><td classContext=\"package\" contextItem=\"")[1].split("\">")[1].split("</td></tr>")[0]));
         }
         resultTask.setPhoneNumber(source.split("Телефон:</th><td>")[1].split("</td></tr>")[0]);
         if (source.contains("Телефон 2:</th><td>")) {
             resultTask.setPhoneNumber2(source.split("Телефон 2:</th><td>")[1].split("</td></tr>")[1]);
         }
         if (source.contains("Плановая дата включения:</th><td>")) {
-            resultTask.setPlanedDate(source.split("Плановая дата включения:</th><td>")[1].split(" 00:00:00", 2)[0]);
+            resultTask.setPlanedDate(source.split("Плановая дата включения:</th><td>")[1].split("00:00", 2)[0].substring(0, 10));
+        }
+        if (source.contains("Порт:")) {
+            resultTask.setPort(source.split("Порт:</th><td>")[1].split("</td></tr>")[0]);
+        }
+
+        if (source.contains("Указать метр повреждения - Pair A length: ")) {
+            resultTask.setPairA(source.split("Указать метр повреждения - Pair A length: ")[1].split("meter")[0]);
+            resultTask.setPairB(source.split("Pair B length: ")[1].split("meter")[0]);
+        } else if (source.contains("Указать метр повреждения - 1:") && source.contains("м 2:")) {
+            resultTask.setPairA(source.split("Указать метр повреждения - 1:")[1].split("м")[0]);
+            resultTask.setPairB(source.split("м 2:")[1].split("м")[0]);
+        } else if (source.contains("Указать метр повреждения - 1:") && source.contains("м  2:")) {
+            resultTask.setPairA(source.split("Указать метр повреждения - 1:")[1].split("м")[0]);
+            resultTask.setPairB(source.split("м  2:")[1].split("м")[0]);
         }
         resultTask.setUrgent(source.split("Срочная:</th><td>")[1].split("</td></tr>", 2)[0].equals("Нет") ? false : true);
         StringBuilder sb = new StringBuilder();
-        String routers = getInstallationValue("Роутер</th><td>", source);
+        String routers = getInstallationValue("Роутер</t h><td>", source);
         String routersPro = getInstallationValue("Роутер ПРО</th><td>", source);
         String tuners =  getInstallationValue("ТВ-тюнер</th><td>", source);
         String withoutTuners =  getInstallationValue("ТВ без тюнера</th><td>", source);
@@ -77,6 +99,10 @@ public class QueueParser {
             result = source.split(installationSource)[1].split("</td><td>", 2)[0];
         }
         return result;
+    }
+
+    public String badCharRemover(String source) {
+        return source.replace("*", " ").replace("_", " ");
     }
 
 

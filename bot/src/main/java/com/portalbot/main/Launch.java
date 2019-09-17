@@ -6,6 +6,7 @@ import com.portalbot.main.queue.QueueParser;
 import com.portalbot.main.queue.QueueTask;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class Launch {
     private static DataStream data;
     private static HttpConnection connection;
-    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, BadLoggingException {
         data = new DataStream();
         connection = new HttpConnection();
         System.out.println(new Date().toString());
@@ -22,10 +23,12 @@ public class Launch {
         SessionsHolder holder = new SessionsHolder();
         QueueParser parser = new QueueParser();
         MySQLRequester mySQLRequester = new MySQLRequester();
-        List<String> result = mySQLRequester.getQueueTaskList();
-        for (String value : result) {
-            System.out.println(value);
-        }
+        PortalRequester requester = new PortalRequester("1111111111");
+
+//        System.out.println(requester.getTaskBody("587629"));
+        QueueTask task = parser.parseTask(requester.getTaskBody("587629"));
+        System.out.println(task.toQueueMessage());
+
 
     }
 
