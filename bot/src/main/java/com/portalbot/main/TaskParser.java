@@ -139,10 +139,12 @@ public class TaskParser {
     }
 
     public String getStatus(String source) {
-        String result = "None";
-        String[] splitted = source.split("background-color:")[1].split("</td>")[0].split("\">");
-        if (splitted.length > 1) {
-            result = splitted[1];
+        String result = null;
+        if (source.contains("background-color:")) {
+            String[] splitted = source.split("background-color:")[1].split("</td>")[0].split("\">");
+            if (splitted.length > 1) {
+                result = splitted[1];
+            }
         }
         return result;
     }
