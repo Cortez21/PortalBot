@@ -116,7 +116,7 @@ public class TaskListener {
         boolean result = false;
         User user = serializer.loadTasks(chatID);
         for (Task task : user.getTasks().values()) {
-            if (task.getStatus().equals("Назначено") && task.getDate().equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date()))) {
+            if (task.getStatus() != null && task.getStatus().equals("Назначено") && task.getDate().equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date()))) {
                 result = true;
                 break;
             }
