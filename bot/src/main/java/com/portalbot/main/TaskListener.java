@@ -12,7 +12,6 @@ public class TaskListener {
     private Serializer serializer;
     private TaskParser taskParser;
     private GarbageCollector gc = new GarbageCollector();
-    private PortalRequester requester;
 
     public TaskListener() {
         data = new DataStream();
@@ -23,7 +22,6 @@ public class TaskListener {
 
     public List<Task> listen(String chatID) throws BadLoggingException {
         User user = serializer.loadTasks(chatID);
-        requester = new PortalRequester(chatID);
         List<Task> newTasks = new ArrayList<>();
         Map<String, Task> oldTasks;
         List<Task> result;

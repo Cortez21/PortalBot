@@ -25,9 +25,8 @@ public class Launch {
         MySQLRequester mySQLRequester = new MySQLRequester();
         PortalRequester requester = new PortalRequester("1111111111");
 
-//        System.out.println(requester.getTaskBody("587629"));
-        QueueTask task = parser.parseTask(requester.getTaskBody("587629"));
-        System.out.println(task.toQueueMessage());
+        System.out.println(requester.switchingToDate("2019-09-18"));
+
 
 
     }
