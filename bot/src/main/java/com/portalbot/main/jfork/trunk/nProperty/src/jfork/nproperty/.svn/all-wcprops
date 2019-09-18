@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/21/trunk/nProperty/src/jfork/nproperty
+END
+ConfigParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/21/trunk/nProperty/src/jfork/nproperty/ConfigParser.java
+END
+IPropertyListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/12/trunk/nProperty/src/jfork/nproperty/IPropertyListener.java
+END
+ConfigStoreFormatterIni.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/21/trunk/nProperty/src/jfork/nproperty/ConfigStoreFormatterIni.java
+END
+ConfigStoreFormatterXml.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/21/trunk/nProperty/src/jfork/nproperty/ConfigStoreFormatterXml.java
+END
+ConfigStoreFormatterImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/21/trunk/nProperty/src/jfork/nproperty/ConfigStoreFormatterImpl.java
+END
+IConfigStoreFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/21/trunk/nProperty/src/jfork/nproperty/IConfigStoreFormatter.java
+END
+Cfg.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/16/trunk/nProperty/src/jfork/nproperty/Cfg.java
+END

@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 34
+*.iml
+.idea
+NPropertyTest.iml
+out
+
+END

@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/21/trunk/nProperty/test/jfork/nproperty/test/parse
+END
+SplitterTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/SplitterTest.java
+END
+StaticAnnotatedClassTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/StaticAnnotatedClassTest.java
+END
+InaccessibleFieldsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/InaccessibleFieldsTest.java
+END
+OverridedPropertyNamesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/OverridedPropertyNamesTest.java
+END
+XmlParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/21/trunk/nProperty/test/jfork/nproperty/test/parse/XmlParserTest.java
+END
+ObjectAndEventsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/ObjectAndEventsTest.java
+END
+DefaultValueTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/DefaultValueTest.java
+END
+IgnoreFieldsAndAnnotatedClassTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/IgnoreFieldsAndAnnotatedClassTest.java
+END
+AnsiTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/AnsiTest.java
+END
+PrefixTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/PrefixTest.java
+END
+FinalFieldTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/FinalFieldTest.java
+END
+AnnotatedMethodsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/AnnotatedMethodsTest.java
+END
+ParametersTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/18/trunk/nProperty/test/jfork/nproperty/test/parse/ParametersTest.java
+END
+CustomFieldClassTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/CustomFieldClassTest.java
+END
+AnnotatedFieldsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/parse/AnnotatedFieldsTest.java
+END

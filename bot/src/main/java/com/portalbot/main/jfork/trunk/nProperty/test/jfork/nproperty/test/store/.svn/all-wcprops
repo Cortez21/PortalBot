@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/21/trunk/nProperty/test/jfork/nproperty/test/store
+END
+APITest.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/store/APITest.java
+END
+DynamicStoreTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/store/DynamicStoreTest.java
+END
+DynamicXmlStoreTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/21/trunk/nProperty/test/jfork/nproperty/test/store/DynamicXmlStoreTest.java
+END
+StaticStoreTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/16/trunk/nProperty/test/jfork/nproperty/test/store/StaticStoreTest.java
+END
+StaticXmlStoreTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/21/trunk/nProperty/test/jfork/nproperty/test/store/StaticXmlStoreTest.java
+END

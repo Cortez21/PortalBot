@@ -1,0 +1,51 @@
+# Test properties file.
+
+MY_INT_VALUE = 1
+
+MY_INT_VALUE2 = 1
+
+MY_NOT_ANNOTATED_VALUE = 1
+
+MY_FINAL_INT_VALUE = 1
+
+MY_SPLITTER_VALUE = 1;2;3
+MY_SPLITTER_VALUE2 = 1;2;3
+
+MY_CUSTOM_SPLITTER_VALUE = 1-2-3
+
+myCustomInt = 1
+
+myCustomSplitter = 1-2-3
+
+myCustomSingleSplitter = 1
+myCustomSingleSplitter2 = 1;
+
+CUSTOM_CLASS_FIELD = 1
+
+NOT_ANNOTATED_VALUE = 1;2;3
+
+nullList = 0
+
+method = 1
+method_3 = 3
+
+INVALID_CAST = a
+
+db.user = user
+db.pswd = pswd
+db.host = 127.0.0.1
+db.port = 90
+
+PARAMETER_VALUE = 1
+
+PARAMETRIZED_PROPERTY = ${PARAMETER_VALUE},2
+
+RECURSIVE_PARAMETER_PROPERTY = ${PARAMETRIZED_PROPERTY}
+
+PLACEHOLDER_PROPERTY = ${}{PARAMETER_VALUE}
+
+NON_REPLACIBLE_PROPERTY = $test${test
+
+NO_EXIST_PROPERTY = ${no_exist}
+
+MULTIPLE_PARAMETERS_PROPERTY = sql://${db.user}@${db.host}:${db.port}
